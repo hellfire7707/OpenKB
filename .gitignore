@@ -18,3 +18,5 @@ output/
 # Local only
 docs/
 .claude/
+venv/
+node_modules/

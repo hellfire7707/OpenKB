@@ -2338,3 +2338,34 @@ def _save_deck_iteration(kb_dir: Path, deck_name: str) -> Path | None:
     dest = ws / f"iteration-{next_n}"
     shutil.copytree(src, dest)
     return dest
+
+
+# 김정민 20260603 추가
+@cli.command()
+@click.option("--host", default="0.0.0.0", show_default=True, help="Bind host.")
+@click.option("--port", default=8000, show_default=True, help="Bind port.")
+@click.pass_context
+def serve(ctx, host, port):
+    """Start the OpenKB web viewer."""
+    try:
+        import uvicorn
+    except ImportError:
+        click.echo("uvicorn is required: pip install fastapi uvicorn", err=True)
+        ctx.exit(1)
+
+    kb_dir = ctx.obj.get("kb_dir") if ctx.obj else None
+    if kb_dir is None:
+        kb_dir = _find_kb_dir(None)
+    if kb_dir is None:
+        click.echo("No KB found. Run 'openkb init' first or use --kb-dir.", err=True)
+        ctx.exit(1)
+
+    wiki_dir = Path(kb_dir) / "wiki"
+    if not wiki_dir.exists():
+        click.echo(f"Wiki directory not found: {wiki_dir}", err=True)
+        ctx.exit(1)
+
+    from openkb.server import create_app
+    app = create_app(wiki_dir)
+    click.echo(f"Serving {wiki_dir} at http://{host}:{port}")
+    uvicorn.run(app, host=host, port=port)
