@@ -2,6 +2,7 @@ import { NavLink, Link } from 'react-router-dom'
 
 const topLinks = [
   { to: '/', label: 'Overview', icon: '◎', exact: true },
+  { to: '/chat', label: 'Chat', icon: '◉', exact: false }, // 김정민 20260603 추가
 ]
 
 const wikiLinks = [
