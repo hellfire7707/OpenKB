@@ -598,6 +598,26 @@ body {
   border-top-right-radius: 3px;
 }
 
+/* 어시스턴트 마크다운 버블 — 내부 markdown 스타일 덮어쓰기 */
+.chat-bubble--md {
+  padding: 10px 14px;
+}
+
+.chat-bubble--md .markdown h1,
+.chat-bubble--md .markdown h2,
+.chat-bubble--md .markdown h3 {
+  margin-top: 12px;
+  border-bottom: none;
+}
+
+.chat-bubble--md .markdown h1 { font-size: 1.1rem; }
+.chat-bubble--md .markdown h2 { font-size: 1rem; }
+.chat-bubble--md .markdown h3 { font-size: 0.95rem; }
+
+.chat-bubble--md .markdown p { margin-bottom: 8px; }
+.chat-bubble--md .markdown ul,
+.chat-bubble--md .markdown ol { margin-bottom: 8px; }
+
 .chat-bubble--typing {
   display: flex;
   align-items: center;
