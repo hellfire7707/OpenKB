@@ -69,6 +69,7 @@ def _setup_env(kb_dir: Path) -> None:
         return
 
     litellm.api_key = api_key
+    litellm.drop_params = True # 20260604 김정민 추가
 
     config = load_config(kb_dir / ".openkb" / "config.yaml")
     model = str(config.get("model", ""))

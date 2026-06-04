@@ -38,6 +38,8 @@ dependencies = [
     "json-repair",
     "prompt_toolkit>=3.0",
     "rich>=13.0",
+    "fastapi>=0.100",
+    "uvicorn>=0.20",
 ]
 
 [project.urls]
